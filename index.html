@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://nominatim.openstreetmap.org https://router.project-osrm.org; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Art and Fragrance On Wheels</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="win95Error" class="win95-error hidden" role="alertdialog" aria-modal="true" aria-labelledby="win95ErrorTitle">
+      <div class="win95-titlebar">
+        <strong id="win95ErrorTitle">Quote Error</strong>
+        <button id="closeWin95Error" type="button" aria-label="Close error">X</button>
+      </div>
+      <div class="win95-error-content">
+        <span class="win95-error-icon">X</span>
+        <p id="win95ErrorMessage">Please select your vehicle details before getting a quote.</p>
+      </div>
+      <button id="okWin95Error" type="button" class="win95-ok">OK</button>
+    </div>
+    <div class="container">
+      <header class="header">
+        <div class="brand-row">
+          <a class="brand" href="#" aria-label="Art and Fragrance On Wheels home">
+            <span class="brand-mark" aria-hidden="true">A</span>
+            <span class="brand-name">Art &amp; Fragrance <span>On Wheels</span></span>
+          </a>
+          <a class="header-phone" href="tel:+17049015592">Call or text <strong>(704) 901-5592</strong></a>
+        </div>
+      </header>
+
+      <section class="hero" aria-labelledby="heroTitle">
+        <div class="hero-copy">
+          <p class="eyebrow">Thoughtful car care, made convenient</p>
+          <h1 id="heroTitle">A fresher, cleaner car—<span>on your schedule.</span></h1>
+          <p class="hero-description">Give your vehicle the attention it deserves with personalized detailing and convenient mobile service. Choose your services to see a clear estimate before you book.</p>
+          <div class="hero-actions">
+            <a class="primary-link" href="#estimate">Build my estimate <span aria-hidden="true">→</span></a>
+            <a class="text-link" href="tel:+17049015592">Questions? Call us</a>
+          </div>
+          <div class="trust-points" aria-label="Service benefits">
+            <span><b aria-hidden="true">✓</b> Clear upfront estimates</span>
+            <span><b aria-hidden="true">✓</b> Shop or mobile service</span>
+            <span><b aria-hidden="true">✓</b> Care tailored to your vehicle</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="hero-orbit"></div>
+          <div class="hero-sparkle">✦</div>
+          <div class="hero-caption"><span>THE FINISH</span><strong>Feel good<br />getting in.</strong></div>
+        </div>
+      </section>
+
+      <section class="contact-bar" aria-label="Contact options">
+        <div class="contact-bar-copy">
+          <strong>Need help or ready to book?</strong>
+          <span>Choose the easiest way to reach us.</span>
+        </div>
+        <nav class="contact-buttons" aria-label="Contact us">
+          <a class="contact-button" href="tel:+17049015592">Call us</a>
+          <a class="contact-button" href="https://wa.me/17049015592" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a class="contact-button" href="mailto:davidhn19@hotmail.com">Email</a>
+          <a class="contact-button" href="https://www.facebook.com/search/top?q=Art%20%26%20Fragrance%20On%20Wheels" target="_blank" rel="noopener noreferrer">Facebook</a>
+        </nav>
+      </section>
+
+      <main class="layout">
+        <section class="card form-card" id="estimate">
+          <div class="section-heading">
+            <span class="step-label">PERSONALIZED PRICING</span>
+            <h2>Let’s get your estimate</h2>
+            <p>Choose services separately for each vehicle. Add exterior, interior, or both, plus any extras.</p>
+          </div>
+          <label class="vehicle-count-field">
+            How many vehicles?
+            <select id="vehicleCount">
+              <option value="1">1 vehicle</option>
+              <option value="2">2 vehicles</option>
+              <option value="3">3 vehicles</option>
+              <option value="4">4 vehicles</option>
+              <option value="5">5 vehicles</option>
+              <option value="6">6 vehicles</option>
+              <option value="7">7 vehicles</option>
+              <option value="8">8 vehicles</option>
+              <option value="9">9 vehicles</option>
+              <option value="10">10 vehicles</option>
+              <option value="11">11 vehicles</option>
+              <option value="12">12 vehicles</option>
+              <option value="13">13 vehicles</option>
+              <option value="14">14 vehicles</option>
+              <option value="15">15 vehicles</option>
+            </select>
+          </label>
+          <div id="vehicleIdentityFields" class="vehicle-identity-fields"></div>
+
+          <div class="field-grid">
+            <label>
+              Your name
+              <input id="customerName" type="text" placeholder="Example: John Smith" />
+            </label>
+
+            <div class="full-width-field address-field">
+              <label for="customerAddress">Service address</label>
+              <div class="address-input-row">
+                <input id="customerAddress" type="text" placeholder="Example: 123 Main St, Houston, TX" aria-describedby="gpsStatus" />
+                <button id="useDeviceLocation" class="location-button" type="button">Use my location</button>
+              </div>
+              <small id="gpsStatus" class="gps-status" aria-live="polite">Enter an address to calculate driving distance from Great Falls.</small>
+              <input id="distanceMiles" type="hidden" value="0" />
+            </div>
+
+            <label>
+              Best phone number
+              <input id="customerPhone" type="tel" placeholder="Example: (555) 123-4567" />
+            </label>
+
+            <label>
+              Where should we detail?
+              <select id="serviceLocation">
+                <option value="shop">Bring vehicle to shop</option>
+                <option value="mobile">Mobile</option>
+              </select>
+            </label>
+
+            <label>
+              Preferred date
+              <input id="appointmentDate" type="date" required />
+            </label>
+
+            <label>
+              Preferred time
+              <select id="appointmentTime" required>
+                <option value="">Select a time</option>
+                <option value="08:00">8:00 AM</option>
+                <option value="08:30">8:30 AM</option>
+                <option value="09:00">9:00 AM</option>
+                <option value="09:30">9:30 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="10:30">10:30 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="11:30">11:30 AM</option>
+                <option value="12:00">12:00 PM</option>
+                <option value="12:30">12:30 PM</option>
+                <option value="13:00">1:00 PM</option>
+                <option value="13:30">1:30 PM</option>
+                <option value="14:00">2:00 PM</option>
+                <option value="14:30">2:30 PM</option>
+                <option value="15:00">3:00 PM</option>
+                <option value="15:30">3:30 PM</option>
+                <option value="16:00">4:00 PM</option>
+                <option value="16:30">4:30 PM</option>
+                <option value="17:00">5:00 PM</option>
+              </select>
+            </label>
+            <p class="appointment-hours">Appointments available every day, Monday–Sunday, from 8:00 AM to 5:00 PM.</p>
+          </div>
+
+          <div id="vehicleServiceFields" class="vehicle-service-fields"></div>
+
+          <button id="calculateBtn" type="button">Request my appointment <span aria-hidden="true">→</span></button>
+          <p id="quoteWarning" class="quote-warning">Choose your vehicle and service details to see your estimate.</p>
+        </section>
+
+        <aside class="card result-card">
+          <div class="section-heading">
+            <span class="step-label">YOUR ESTIMATE</span>
+            <h2>Your clean-car plan</h2>
+            <p>Your estimate updates as you select your vehicle and services.</p>
+          </div>
+          <div class="quote-box">
+            <p class="quote-label">Estimated total</p>
+            <p id="quoteAmount" class="quote-amount">$0</p>
+            <p id="quoteTotalLabel" class="quote-total-label">Complete a vehicle to begin your quote.</p>
+          </div>
+
+          <div id="vehicleQuoteList" class="vehicle-quote-list" aria-live="polite"></div>
+
+          <div class="message-box">
+            <p id="customerMessage" aria-live="polite">
+              Your personalized estimate and appointment details will appear here.
+            </p>
+          </div>
+          <p class="quote-note">Final pricing may vary based on vehicle condition and selected services.</p>
+          <a class="contact-link" href="https://wa.me/17049015592" target="_blank" rel="noopener noreferrer">Prefer to chat? Message us on WhatsApp <span aria-hidden="true">↗</span></a>
+        </aside>
+
+        <section class="card price-card">
+          <div class="pricing-heading">
+            <div class="section-heading">
+              <span class="step-label">SIMPLE, TRANSPARENT PRICING</span>
+              <h2>Starting prices</h2>
+            </div>
+            <p>Vehicle size, condition, and selected add-ons affect your final estimate. Seat cleaning is priced by material and seat count.</p>
+          </div>
+          <ul id="pricingGuideList" class="guide-list"></ul>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>Art &amp; Fragrance On Wheels</span>
+        <span>Questions? <a href="mailto:davidhn19@hotmail.com">Email us</a> or <a href="tel:+17049015592">call (704) 901-5592</a>.</span>
+      </footer>
+    </div>
+
+    <script src="script.js?v=20261007-services" defer></script>
+  </body>
+</html>
